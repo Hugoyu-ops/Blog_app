@@ -1,0 +1,94 @@
+{% extends 'base.html' %} {% block content %}
+<style>
+  /*.container-flex-box{
+    display: flex;
+    flex-wrap: wrap;
+    width: 75%;
+    margin: 0 auto;
+    text-align: center;
+  }*/
+  /*.row{
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .card-text img{
+    display: flex;
+    flex-wrap: wrap;
+  }*/
+  p img{
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    display: block;
+
+  }
+
+  hr{
+    border: 1px solid #6c757d;
+  }
+
+  .comment {
+        margin: 10px 0px 10px 10px;
+        border: 1px solid #6c757d;
+        float: left;
+        padding: 5px 20px 0px ;
+        background: #fff3cd;
+    }
+    label {
+        display: flex;
+    }
+    #id_text{
+        cols:40;
+        rows:5;
+    }
+</style>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 card mb-4  mt-3 left  top">
+      <!--<div class="card-body">-->
+        <h1>{% block title %} {{ post.title }} {% endblock title %}</h1>
+        <p class=" text-muted">{{ post.author }} | {{ post.created_on }}</p>
+        <p class="card-text img-fluid">{{ post.body | safe }}</p>
+      <!--</div>-->
+      <hr>
+
+      <h3>Leave a comment</h3>
+        <div id="new_comment">
+            <form method="post" style="margin-top: 1.3em;">
+              {{ comment_form.as_p }}
+              {% csrf_token %}
+              <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+            </form>
+        </div>
+      {% for comment in post.comments.all %}
+          <div class="comment">
+              <div class="date">{{ comment.created_date }}</div>
+              <strong>{{ comment.name }}</strong>
+              <p>{{ comment.text|linebreaks }}</p>
+          </div>
+      {% empty %}
+          <p>No comments here yet :(</p>
+      {% endfor %}
+    </div>
+      <!--<div class="col-md-8 card mb-4  mt-3 ">
+      <div class="card-body">
+        {% if new_comment %}
+        <div class="alert alert-success" role="alert">
+          Your comment is awaiting moderation
+        </div>
+        {% else %}
+        <h3>Leave a comment</h3>
+        <form method="post" style="margin-top: 1.3em;">
+          {{ comment_form.as_p }}
+          {% csrf_token %}
+          <button type="submit" class="btn btn-primary  btn-lg">Submit</button>
+        </form>
+        {% endif %}
+      </div>
+    </div>-->
+    {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+  </div>
+
+</div>
+
+{% endblock content %}

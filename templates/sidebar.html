@@ -1,0 +1,68 @@
+{% block sidebar %}
+
+<style>
+        .card{
+            box-shadow: 0 16px 48px #E3E7EB;
+        }
+
+        .card-img{
+            display: block;
+            width: auto;
+            height: auto;
+            max-width: 100%;
+            padding: 5px;
+        }
+
+        .fa {
+            border-radius: 40px;
+            padding: 12px;
+            font-size: 25px;
+            width: 50px;
+            height: 50px;
+            text-align: center;
+            text-decoration: none;
+              margin: 5px 2px;
+            }
+
+        .fa:hover {
+                opacity: 0.7;
+            }
+
+        .fa-facebook {
+              background: #3B5998;
+              color: white;
+            }
+
+    #fb_link{
+        text-align: center;
+    }
+</style>
+
+<!-- Sidebar Widgets Column -->
+<div class="col-md-4 float-left ">
+<div class="card my-4">
+        <h5 class="card-header">About CK</h5>
+    <div class="card-body">
+        <p class="card-text"> Love traveling and sharing to the whole world!!  </p>
+        <a href="{% url 'about' %}"
+           class="btn btn-danger">Know more!</a>
+    </div>
+</div>
+
+    <div class="card my-4" id="fb_link">
+            <!--<h5 class="card-header">Face Book Page</h5>-->
+        <div class="card-body">
+            <!--<h5>FaceBook Page</h5>-->
+            <p id='FB' class="fa fa-facebook"></p>
+            <a href="https://djangocentral.com/building-a-blog-application-with-django" target="_blank">
+                <img class="card-img" src="https://activeadventures.com/assets/images/blog/2018/Top-10-Views-New-Zealand/braemar-station-mount-cook-view.jpg">
+            </a>
+            <p class="card-text"><strong> More nice photos here!! </strong></p>
+            <!--<a href="https://djangocentral.com/building-a-blog-application-with-django"
+            class="btn btn-primary">Take a look!</a>-->
+        </div>
+    </div>
+
+</div>
+
+{% endblock sidebar %}
